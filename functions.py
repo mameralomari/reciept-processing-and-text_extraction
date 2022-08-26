@@ -27,7 +27,7 @@ def extract_text(url):
     
     
     config = ('-l eng --oem 1 --psm 3')
-    text = pytesseract.image_to_string(image_with_largest_contours , config=config)
+    text = pytesseract.image_to_string(frame , config=config)
     
     return text
 
