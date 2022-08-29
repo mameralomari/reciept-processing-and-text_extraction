@@ -23,8 +23,8 @@ def extract_text(url):
     
 
     frame=cv2.imread(url)
-    #grey= im.convert(mode="L")
-    #frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+    frame= im.convert(mode="L")
+    frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) 
    
     #imgThreshold = cv2.adaptiveThreshold(frame,255,cv2.THRESH_OTSU)
