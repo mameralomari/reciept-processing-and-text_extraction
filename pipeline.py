@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
+import seaborn
 import pytesseract 
 from PIL import Image, ImageOps
 import re
@@ -81,9 +82,6 @@ def extract_data(text):
 
    
     def extract_prices(text):
-        if len(text) == 0:
-            return np.nan
-        
         prices = CommonRegex(text).prices
         if len(prices) > 0:
             return max(prices)
@@ -92,9 +90,6 @@ def extract_data(text):
 
         
     def extract_geo(text):
-        if len(text) == 0:
-            return np.nan, np.nan, np.nan, np.nan
-        
         #zip_code 
         us_zip = r'(\d{5}\-?\d{0,4})'
         zip_code = re.search(us_zip, text)
@@ -118,18 +113,9 @@ def extract_data(text):
         return zip_code, longitude, latitude, address
         
     def extract_time(text):
-        if len(text) == 0:
-            return np.nan
         times = CommonRegex(text).times
         if len(times) == 1:
             return times[0]
-        else:
-            return np.nan
-        
-    def extract_store_names(text):
-        string = text.strip()
-        if len(string) >0:
-            return re.search('[^(\n)]+', string, flags=0)[0]
         else:
             return np.nan
     
@@ -144,8 +130,6 @@ def extract_data(text):
     df['prices'] = [extract_prices(text)]
          
     df['time']= extract_time(text)
-    
-    df['Store Names'] = extract_store_names(text)
         
     return df
 
@@ -160,7 +144,7 @@ def clean_image(pathImage):
 
     heightImg = 1920
     widthImg  = 1080
-
+    pathImage= str(pathImage)
     
     #pathImage = r"images/large-receipt-image-dataset-SRD/1013-receipt.jpg"
 
@@ -201,6 +185,7 @@ def clean_image(pathImage):
     count=1
     cv2.imwrite("Scanned/myImage"+str(count)+".jpg",imgWarpColored)
     item_name=("Scanned/myImage"+str(count)+".jpg")
+    
     return item_name
 
 
