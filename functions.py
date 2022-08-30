@@ -216,7 +216,7 @@ def run_camera():
     ########################################################################
     webCamFeed = True
     pathImage = "1.jpg"
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     cap.set(10,160)
     heightImg = 1920
     widthImg  = 1080
