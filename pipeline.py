@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
+import seaborn
 import pytesseract 
 from PIL import Image, ImageOps
 import re
@@ -143,7 +144,7 @@ def clean_image(pathImage):
 
     heightImg = 1920
     widthImg  = 1080
-
+    pathImage= str(pathImage)
     
     #pathImage = r"images/large-receipt-image-dataset-SRD/1013-receipt.jpg"
 
@@ -184,6 +185,7 @@ def clean_image(pathImage):
     count=1
     cv2.imwrite("Scanned/myImage"+str(count)+".jpg",imgWarpColored)
     item_name=("Scanned/myImage"+str(count)+".jpg")
+    
     return item_name
 
 
