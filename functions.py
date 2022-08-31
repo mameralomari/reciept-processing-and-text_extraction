@@ -216,7 +216,7 @@ def run_camera():
     ########################################################################
     webCamFeed = True
     pathImage = "1.jpg"
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     cap.set(10,160)
     heightImg = 1920
     widthImg  = 1080
@@ -305,7 +305,7 @@ def extract_using_camera():
     text=extract_text(item)
     df=extract_data(text)
     
-    return df 
+    return df , text
 
 
 
@@ -319,7 +319,7 @@ def extract_from_image(url):
 
     df=extract_data(text)
     
-    return df
+    return df ,text
     
     
 
